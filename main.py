@@ -1,5 +1,7 @@
+import streamlit as st
+
 def main():
-    print("Hello from doctoralia!")
+    st.header("Doctoralia")
 
 
 if __name__ == "__main__":
