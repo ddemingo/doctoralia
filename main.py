@@ -14,10 +14,10 @@ def main():
 
     df = df_raw.group_by("NUM PACIENTE").agg(
         pl.col("FECHA").min().alias("FECHA_INICIO"),
+        pl.col("AGENDA").first().map_elements(agenda_to_name, return_dtype=pl.String),
         pl.col("ESTADO").filter(pl.col("ESTADO") == "Realizada y pagada").count().alias("REALIZADAS"),
         pl.col("ESTADO").filter(pl.col("ESTADO") == "Pendiente").count().alias("PENDIENTES"),
         pl.col("ASUNTO").first(),
-        pl.col("AGENDA").first().map_elements(agenda_to_name, return_dtype=pl.String),
         pl.col("CANAL").first(),
     )
 
